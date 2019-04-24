@@ -23,8 +23,7 @@ elif len(sys.argv)==3:
         name = sys.argv[1]
     else:
         print("Error: Incorrect arguments")
-        sys.exit(-1)
-else:
+elif len(sys.argv)>3:
     print("Error: Too many arguments")
     sys.exit(-1)
 
