@@ -42,19 +42,20 @@ max_y=df["y"].max()
 
 # RGB color scheme
 print("\nCalculating RGB Hierarchical Agglomerative Clustering")
-hac = AgglomerativeClustering(n_clusters = clusters).fit(df[["r","g","b"]])
+hac = AgglomerativeClustering(n_clusters = clusters, linkage = "single").fit(df[["r","g","b"]])
+df['label']=hac.labels_
 print("Done")
 
 print("\nPostprocessing RGB pixels")
 # calculating centers
 centers = [[0,0,0] for i in range(clusters)]
 n_label = [0 for i in range(clusters)]
-df['label']=hac.labels_
 for it,row in df.iterrows():
-    n_label[row['label']]+=1
-    centers = np.add(centers,[df['r'],df['g'],df['b']])
+    n_label[int(row['label'])]+=1
+    centers[int(row['label'])] = np.add(centers[int(row['label'])],[row['r'],row['g'],row['b']])
 
 for c, n in zip(centers, n_label):
+    print("Group with %d"%n)
     c[0] = c[0]/n
     c[1] = c[1]/n
     c[2] = c[2]/n
@@ -104,18 +105,19 @@ print("Done")
 # plt.show()
 
 print("\nCalculating HS(V) Hierarchical Agglomerative Clustering")
-hac = AgglomerativeClustering(n_clusters = clusters).fit(df_hs[["hsx","hsy"]])
+hac = AgglomerativeClustering(n_clusters = clusters, linkage = "single").fit(df_hs[["hsx","hsy"]])
+df_hs['label']=hac.labels_
 print("Done")
 
 # calculating centers
 centers = [[0,0] for i in range(clusters)]
 n_label = [0 for i in range(clusters)]
-df_hs['label']=hac.labels_
-for it,row in df.iterrows():
-    n_label[row['label']]+=1
-    centers = np.add(centers,[df_hs['hsx'],df['hsy']])
+for it,row in df_hs.iterrows():
+    n_label[int(row['label'])]+=1
+    centers[int(row['label'])] = np.add(centers[int(row['label'])],[row['hsx'],row['hsy']])
 
 for c, n in zip(centers, n_label):
+    print("Group with %d"%n)
     c[0] = c[0]/n
     c[1] = c[1]/n
 

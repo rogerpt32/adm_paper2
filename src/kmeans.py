@@ -43,6 +43,7 @@ max_y=df["y"].max()
 # RGB color scheme
 print("\nCalculating RGB kmeans")
 kmeans = KMeans(n_clusters = clusters).fit(df[["r","g","b"]])
+df['label'] = kmeans.labels_
 print("Done")
 
 #print(kmeans.cluster_centers_)
@@ -52,10 +53,9 @@ print("\nPostprocessing RGB pixels")
 img_colored = [[0 for i in range(max_y+1)] for j in range(max_x+1)]
 colors=[]
 for it,row in df.iterrows():
-    x,y,r,g,b = int(row['x']),int(row['y']),row['r'],row['g'],row['b']
-    [center] = kmeans.predict([[r,g,b]])
-    img_colored[x][y] = [int(round(c)) for c in centers[center]]
-    colors.append([c/255.0 for c in centers[center]])
+    x,y,lab = int(row['x']),int(row['y']),int(row['label'])
+    img_colored[x][y] = [int(round(c)) for c in centers[lab]]
+    colors.append([c/255.0 for c in centers[lab]])
 print("Done")
 
 print("\nGenerating RGB Plots and images")
@@ -65,7 +65,7 @@ ax.scatter3D(df['r'],df['g'],df['b'],c=colors)
 if show:
     plt.show()
 if save:
-    plt.savefig("../outputs/"+name + "_%d_rgb_plot.png"%clusters)
+    plt.savefig("../outputs/"+name + "_%d_rgb_plot_kmeans.png"%clusters)
 plt.cla()
 plt.clf()
 
@@ -73,7 +73,7 @@ plt.imshow(img_colored)
 if show:
     plt.show()
 if save:
-    plt.savefig("../outputs/"+name + "_%d_rgb_colored.png"%clusters)
+    plt.savefig("../outputs/"+name + "_%d_rgb_colored_kmeans.png"%clusters)
 plt.cla()
 plt.clf()
 print("Done")
@@ -96,6 +96,7 @@ print("Done")
 
 print("\nCalculating HS(V) kmeans")
 kmeans = KMeans(n_clusters = clusters).fit(df_hs[["hsx","hsy"]])
+df_hs['label'] = kmeans.labels_
 print("Done")
 
 centers = kmeans.cluster_centers_
@@ -114,10 +115,9 @@ for [hsx,hsy] in centers:
 img_colored = [[0 for i in range(max_y+1)] for j in range(max_x+1)]
 colors_hs = []
 for it,row in df_hs.iterrows():
-    x,y,hsx,hsy = int(row['x']),int(row['y']),row['hsx'],row['hsy']
-    [center] = kmeans.predict([[hsx,hsy]])
-    img_colored[x][y] = [int(round(c)) for c in centers_color[center]]
-    colors_hs.append([c/255.0 for c in centers_color[center]])
+    x,y,lab = int(row['x']),int(row['y']),int(row['label'])
+    img_colored[x][y] = [int(round(c)) for c in centers_color[lab]]
+    colors_hs.append([c/255.0 for c in centers_color[lab]])
 print("Done")
 
 print("\nGenerating HS(V) Plots and images")
@@ -126,13 +126,13 @@ plt.scatter(df_hs['hsx'],df_hs['hsy'],c=colors_hs)
 if show:
     plt.show()
 if save:
-    plt.savefig("../outputs/"+name + "_%d_hsv_plot.png"%clusters)
+    plt.savefig("../outputs/"+name + "_%d_hsv_plot_kmeans.png"%clusters)
 plt.cla()
 
 plt.imshow(img_colored)
 if show:
     plt.show()
 if save:
-    plt.savefig("../outputs/"+name + "_%d_hsv_colored.png"%clusters)
+    plt.savefig("../outputs/"+name + "_%d_hsv_colored_kmeans.png"%clusters)
 plt.cla()
 print("Done")

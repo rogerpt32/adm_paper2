@@ -42,6 +42,7 @@ max_y=df["y"].max()
 # RGB color scheme
 print("\nCalculating RGB gmm")
 gmm = GaussianMixture(n_components = components).fit(df[["r","g","b"]])
+df['label'] = gmm.predict(df[['r','g','b']])
 print("Done")
 
 #print(gmm.means_)
@@ -51,10 +52,9 @@ print("\nPostprocessing RGB pixels")
 img_colored = [[0 for i in range(max_y+1)] for j in range(max_x+1)]
 colors=[]
 for it,row in df.iterrows():
-    x,y,r,g,b = int(row['x']),int(row['y']),row['r'],row['g'],row['b']
-    [center] = gmm.predict([[r,g,b]])
-    img_colored[x][y] = [int(round(c)) for c in means[center]]
-    colors.append([c/255.0 for c in means[center]])
+    x,y,lab = int(row['x']),int(row['y']),int(row['label'])
+    img_colored[x][y] = [int(round(c)) for c in means[lab]]
+    colors.append([c/255.0 for c in means[lab]])
 print("Done")
 
 print("\nGenerating RGB Plots and images")
@@ -95,6 +95,7 @@ print("Done")
 
 print("\nCalculating HS(V) gmm")
 gmm = GaussianMixture(n_components = components).fit(df_hs[["hsx","hsy"]])
+df_hs['label'] = gmm.predict(df_hs[["hsx","hsy"]])
 print("Done")
 
 means = gmm.means_
@@ -113,10 +114,9 @@ for [hsx,hsy] in means:
 img_colored = [[0 for i in range(max_y+1)] for j in range(max_x+1)]
 colors_hs = []
 for it,row in df_hs.iterrows():
-    x,y,hsx,hsy = int(row['x']),int(row['y']),row['hsx'],row['hsy']
-    [center] = gmm.predict([[hsx,hsy]])
-    img_colored[x][y] = [int(round(c)) for c in means_color[center]]
-    colors_hs.append([c/255.0 for c in means_color[center]])
+    x,y,lab = int(row['x']),int(row['y']),int(row['label'])
+    img_colored[x][y] = [int(round(c)) for c in means_color[lab]]
+    colors_hs.append([c/255.0 for c in means_color[lab]])
 print("Done")
 
 print("\nGenerating HS(V) Plots and images")
