@@ -6,19 +6,35 @@ import numpy as np
 from sklearn.cluster import KMeans
 import colorsys
 
-if len(sys.argv)==1:
-    print("Using 2 clusters")
-    clusters = 2
-elif len(sys.argv)==2:
-    clusters = int(sys.argv[1])
-    print("Using %d clusters"%clusters)
+# Reading Args
+name = "peppersc"
+clusters = 2
+if len(sys.argv)==2:
+    if(sys.argv[1].isdigit()):
+        clusters = int(sys.argv[1])
+    else:
+        name = sys.argv[1]
+elif len(sys.argv)==3:
+    if(sys.argv[1].isdigit() and not sys.argv[2].isdigit()):
+        clusters = int(sys.argv[1])
+        name = sys.argv[2]
+    elif(sys.argv[2].isdigit() and not sys.argv[1].isdigit()):
+        clusters = int(sys.argv[2])
+        name = sys.argv[1]
+    else:
+        print("Error: Incorrect arguments")
+        sys.exit(-1)
 else:
-    print("Error: Too many arguments using k=2")
+    print("Error: Too many arguments")
+    sys.exit(-1)
+
+print(("Using %d clusters"%clusters)+" for image "+name)
 
 show=False
 save=True
-# load
-name = "lena"
+
+# Load data
+
 df = pd.read_csv("../data/"+name+".csv")
 
 max_x=df["x"].max()
