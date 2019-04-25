@@ -71,14 +71,14 @@ def get_rgb(name, algorithm, df, clusters, max_x, max_y, show, save):
     print("Postprocessing RGB pixels...",end='',flush=True)
     img_colored = [[0 for i in range(max_y+1)] for j in range(max_x+1)]
     colors=[]
-    for it,row in df.iterrows():
+    for _,row in df.iterrows():
         x,y,lab = int(row['x']),int(row['y']),int(row['label'])
         img_colored[x][y] = [int(round(c)) for c in centers[lab]]
         colors.append([c/255.0 for c in centers[lab]])
     print("Done")
 
     print("Generating RGB Plots and images...",end='',flush=True)
-    fig = plt.figure()
+    plt.figure()
     ax = plt.axes(projection='3d')
     ax.scatter3D(df['r'],df['g'],df['b'],c=colors)
     if show:
@@ -102,7 +102,7 @@ def get_hsv(name, algorithm, df, clusters, max_x, max_y, show, save):
     # Mapping the colors
     print("Mapping HS(V) colors in 2D space...",end='',flush=True)
     data_hs = []
-    for it,row in df.iterrows():
+    for _,row in df.iterrows():
         x,y,h,s = int(row['x']),int(row['y']),row['h'],row['s']
         hsx = s * np.cos(h*(np.pi*2))
         hsy = s * np.sin(h*(np.pi*2))
@@ -127,7 +127,7 @@ def get_hsv(name, algorithm, df, clusters, max_x, max_y, show, save):
 
     img_colored = [[0 for i in range(max_y+1)] for j in range(max_x+1)]
     colors_hs = []
-    for it,row in df_hs.iterrows():
+    for _,row in df_hs.iterrows():
         x,y,lab = int(row['x']),int(row['y']),int(row['label'])
         img_colored[x][y] = [int(round(c)) for c in centers_color[lab]]
         colors_hs.append([c/255.0 for c in centers_color[lab]])
