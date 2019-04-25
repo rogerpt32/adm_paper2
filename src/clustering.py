@@ -58,7 +58,7 @@ def get_label(algorithm, df, clusters):
         label = model.predict(df)
         centers = model.means_
     elif algorithm=="birch":
-        model = Birch(n_clusters=clusters, threshold=0.05).fit(df)
+        model = Birch(n_clusters=clusters, threshold=0.1).fit(df)
         label = model.labels_
         centers = [[0 for j in range(len(df.columns))] for i in range(clusters)]
         n_label = [0 for i in range(clusters)]
@@ -68,7 +68,8 @@ def get_label(algorithm, df, clusters):
             colors=[row[col] for col in df.columns]
             centers[lab] = np.add(centers[lab],colors)
         for it, n in enumerate(n_label):
-            centers[it] = [i/n for i in centers[it]]
+            if n>1:
+                centers[it] = [i/n for i in centers[it]]
     return centers,label
 
 def get_rgb(name, algorithm, df, clusters, max_x, max_y, show, save):
@@ -101,7 +102,6 @@ def get_rgb(name, algorithm, df, clusters, max_x, max_y, show, save):
     if show:
         plt.show()
     if save:
-        # plt.savefig("../outputs/"+name + ("_%d_rgb_colored_"%clusters)+algorithm+".png")
         plt.imsave("../outputs/"+name + ("_%d_rgb_colored_"%clusters)+algorithm+".png",img_colored)
     plt.cla()
     plt.clf()
@@ -177,13 +177,13 @@ def main(argv):
 
     for algor in algorithms:
         print("=============================================================")
-        print("Algoritm: "+algor)
-        print("-------------------------------------------------------------")
-        print("RGB:\n")
-        get_rgb(name,algor,df,clusters,max_x,max_y,show,save)
+        print("Algorithm: "+algor)
         print("-------------------------------------------------------------")
         print("HSV:\n")
         get_hsv(name,algor,df,clusters,max_x,max_y,show,save)
+        print("-------------------------------------------------------------")
+        print("RGB:\n")
+        get_rgb(name,algor,df,clusters,max_x,max_y,show,save)
     print("=============================================================")
     print("#############################################################")
 
