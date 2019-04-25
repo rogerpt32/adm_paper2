@@ -7,7 +7,7 @@ import colorsys
 
 from sklearn.cluster import KMeans
 from sklearn.mixture import GaussianMixture
-from sklearn.cluster import AgglomerativeClustering
+# from sklearn.cluster import AgglomerativeClustering
 from sklearn.cluster import Birch
 
 # Reading Args
@@ -38,6 +38,8 @@ def read_args(args):
     return clusters, name
 
 def get_label(algorithm, df, clusters):
+    label = []
+    centers = []
     if algorithm=="kmeans":
         model = KMeans(n_clusters = clusters).fit(df)
         label = model.labels_
@@ -47,25 +49,26 @@ def get_label(algorithm, df, clusters):
         label = model.predict(df)
         centers = model.means_
     elif algorithm=="birch":
-        model = Birch(n_clusters=clusters)
-        label = model.predict(df)
-        centers = [[0,0] for i in range(clusters)]
+        model = Birch(n_clusters=clusters, threshold=0.05).fit(df)
+        label = model.labels_
+        centers = [[0 for j in range(len(df.columns))] for i in range(clusters)]
         n_label = [0 for i in range(clusters)]
         for it,row in df.iterrows():
             lab = label[it]
             n_label[lab]+=1
-            centers[lab] = np.add(centers[lab],row)
-        for c, n in zip(centers, n_label):
-            c = [i/n for i in c]
+            colors=[row[col] for col in df.columns]
+            centers[lab] = np.add(centers[lab],colors)
+        for it, n in enumerate(n_label):
+            centers[it] = [i/n for i in centers[it]]
     return centers,label
 
-def get_rgb(algorithm, df, clusters, max_x, max_y, show, save):
+def get_rgb(name, algorithm, df, clusters, max_x, max_y, show, save):
     # RGB color scheme
-    print("\nClustering RGB")
-    centers, df['label'] = get_label(algorithm, clusters df[['r','g','b']])
+    print("Clustering RGB... ",end='',flush=True)
+    centers, df['label'] = get_label(algorithm, df[['r','g','b']], clusters)
     print("Done")
 
-    print("\nPostprocessing RGB pixels")
+    print("Postprocessing RGB pixels...",end='',flush=True)
     img_colored = [[0 for i in range(max_y+1)] for j in range(max_x+1)]
     colors=[]
     for it,row in df.iterrows():
@@ -74,14 +77,14 @@ def get_rgb(algorithm, df, clusters, max_x, max_y, show, save):
         colors.append([c/255.0 for c in centers[lab]])
     print("Done")
 
-    print("\nGenerating RGB Plots and images")
+    print("Generating RGB Plots and images...",end='',flush=True)
     fig = plt.figure()
     ax = plt.axes(projection='3d')
     ax.scatter3D(df['r'],df['g'],df['b'],c=colors)
     if show:
         plt.show()
     if save:
-        plt.savefig("../outputs/"+name + "_%d_rgb_plot_kmeans.png"%clusters)
+        plt.savefig("../outputs/"+name + ("_%d_rgb_plot_"%clusters)+algorithm+".png")
     plt.cla()
     plt.clf()
 
@@ -89,15 +92,15 @@ def get_rgb(algorithm, df, clusters, max_x, max_y, show, save):
     if show:
         plt.show()
     if save:
-        plt.savefig("../outputs/"+name + "_%d_rgb_colored_kmeans.png"%clusters)
+        plt.savefig("../outputs/"+name + ("_%d_rgb_colored_"%clusters)+algorithm+".png")
     plt.cla()
     plt.clf()
     print("Done")
 
-def get_hsv(algorithm, df, clusters, max_x, max_y, show, save):
+def get_hsv(name, algorithm, df, clusters, max_x, max_y, show, save):
     # HSV color scheme
     # Mapping the colors
-    print("\nMapping HS(V) colors in 2D space")
+    print("Mapping HS(V) colors in 2D space...",end='',flush=True)
     data_hs = []
     for it,row in df.iterrows():
         x,y,h,s = int(row['x']),int(row['y']),row['h'],row['s']
@@ -107,16 +110,11 @@ def get_hsv(algorithm, df, clusters, max_x, max_y, show, save):
     df_hs = pd.DataFrame(data=data_hs, columns=["x","y","hsx","hsy"])
     print("Done")
 
-    # plt.scatter(df_hs['hsx'],df_hs['hsy'])
-    # plt.show()
-
-    print("\nClustering HS(V)")
-    centers, df_hs['label'] = get_label(algorithm, df_hs[['hsy','hsy']])
+    print("Clustering HS(V)...",end='',flush=True)
+    centers, df_hs['label'] = get_label(algorithm, df_hs[['hsx','hsy']], clusters)
     print("Done")
 
-    centers = kmeans.cluster_centers_
-
-    print("\nPostprocessing HS(V) pixels")
+    print("Postprocessing HS(V) pixels...",end='',flush=True)
     centers_color = []
     for [hsx,hsy] in centers:
         h = np.arctan2(hsy,hsx)
@@ -135,20 +133,20 @@ def get_hsv(algorithm, df, clusters, max_x, max_y, show, save):
         colors_hs.append([c/255.0 for c in centers_color[lab]])
     print("Done")
 
-    print("\nGenerating HS(V) Plots and images")
+    print("Generating HS(V) Plots and images...",end='',flush=True)
     plt.cla()
     plt.scatter(df_hs['hsx'],df_hs['hsy'],c=colors_hs)
     if show:
         plt.show()
     if save:
-        plt.savefig("../outputs/"+name + "_%d_hsv_plot_kmeans.png"%clusters)
+        plt.savefig("../outputs/"+name + ("_%d_hsv_plot_"%clusters)+algorithm+".png")
     plt.cla()
 
     plt.imshow(img_colored)
     if show:
         plt.show()
     if save:
-        plt.savefig("../outputs/"+name + "_%d_hsv_colored_kmeans.png"%clusters)
+        plt.savefig("../outputs/"+name + ("_%d_hsv_colored_"%clusters)+algorithm+".png")
     plt.cla()
     print("Done")
 
@@ -164,6 +162,17 @@ def main(argv):
 
     max_x=df["x"].max()
     max_y=df["y"].max()
+
+    for algor in algorithms:
+        print("=============================================================")
+        print("Algoritm: "+algor)
+        print("-------------------------------------------------------------")
+        print("RGB:\n")
+        get_rgb(name,algor,df,clusters,max_x,max_y,show,save)
+        print("-------------------------------------------------------------")
+        print("HSV:\n")
+        get_hsv(name,algor,df,clusters,max_x,max_y,show,save)
+    print("=============================================================")
 
 
 if __name__ == "__main__":
