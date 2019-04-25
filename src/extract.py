@@ -13,6 +13,8 @@ elif len(sys.argv)>2:
     print("Error: Too many arguments")
     sys.exit(-1)
 
+filename = filename.split("/")[-1] #deletes path if needed
+
 name = filename.split(".")[0]
 
 img = mpimg.imread("../imgs/"+filename)
@@ -30,6 +32,6 @@ for x in range(len(img)):
             b=int(round(b*255))
         (h,s,v) = colorsys.rgb_to_hsv(r,g,b)
         data.append([x,y,r,g,b,h,s,v])
-        
+
 df = pd.DataFrame(data=data, columns=["x","y","r","g","b","h","s","v"])
 df.to_csv("../data/"+name+".csv")
