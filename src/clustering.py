@@ -5,6 +5,15 @@ import pandas as pd
 import numpy as np
 import colorsys
 
+from matplotlib import rcParams
+
+rcParams['font.family'] = 'serif'
+rcParams['font.size'] = 10
+rcParams['font.sans-serif'] = ['Console Modern']
+rcParams['savefig.format'] = ['pdf']
+rcParams['savefig.bbox'] = 'tight'
+rcParams['savefig.pad_inches'] = 0
+
 from sklearn.cluster import KMeans
 from sklearn.mixture import GaussianMixture
 # from sklearn.cluster import AgglomerativeClustering
@@ -84,7 +93,7 @@ def get_rgb(name, algorithm, df, clusters, max_x, max_y, show, save):
     if show:
         plt.show()
     if save:
-        plt.savefig("../outputs/"+name + ("_%d_rgb_plot_"%clusters)+algorithm+".png")
+        plt.savefig("../outputs/"+name + ("_%d_rgb_plot_"%clusters)+algorithm+".pdf",bbox_inches='tight')
     plt.cla()
     plt.clf()
 
@@ -92,7 +101,8 @@ def get_rgb(name, algorithm, df, clusters, max_x, max_y, show, save):
     if show:
         plt.show()
     if save:
-        plt.savefig("../outputs/"+name + ("_%d_rgb_colored_"%clusters)+algorithm+".png")
+        # plt.savefig("../outputs/"+name + ("_%d_rgb_colored_"%clusters)+algorithm+".png")
+        plt.imsave("../outputs/"+name + ("_%d_rgb_colored_"%clusters)+algorithm+".png",img_colored)
     plt.cla()
     plt.clf()
     print("Done")
@@ -139,18 +149,20 @@ def get_hsv(name, algorithm, df, clusters, max_x, max_y, show, save):
     if show:
         plt.show()
     if save:
-        plt.savefig("../outputs/"+name + ("_%d_hsv_plot_"%clusters)+algorithm+".png")
+        plt.savefig("../outputs/"+name + ("_%d_hsv_plot_"%clusters)+algorithm+".pdf",bbox_inches='tight')
     plt.cla()
 
     plt.imshow(img_colored)
     if show:
         plt.show()
     if save:
-        plt.savefig("../outputs/"+name + ("_%d_hsv_colored_"%clusters)+algorithm+".png")
+        # plt.savefig("../outputs/"+name + ("_%d_hsv_colored_"%clusters)+algorithm+".png")
+        plt.imsave("../outputs/"+name + ("_%d_hsv_colored_"%clusters)+algorithm+".png",img_colored)
     plt.cla()
     print("Done")
 
 def main(argv):
+    print("#############################################################")
     clusters, name = read_args(argv)
     show=False
     save=True
@@ -173,6 +185,7 @@ def main(argv):
         print("HSV:\n")
         get_hsv(name,algor,df,clusters,max_x,max_y,show,save)
     print("=============================================================")
+    print("#############################################################")
 
 
 if __name__ == "__main__":
