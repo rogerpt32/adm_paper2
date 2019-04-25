@@ -18,8 +18,8 @@ filename = filename.split("/")[-1] #deletes path if needed
 name = filename.split(".")[0]
 
 img = mpimg.imread("../imgs/"+filename)
-# plt.imshow(img)
-# plt.show()
+
+print("Extracting features of "+ filename)
 data = []
 for x in range(len(img)):
     for y in range(len(img[0])):
@@ -35,3 +35,4 @@ for x in range(len(img)):
 
 df = pd.DataFrame(data=data, columns=["x","y","r","g","b","h","s","v"])
 df.to_csv("../data/"+name+".csv")
+print("Features stored at \""+"../data/"+name+".csv"+"\"")
