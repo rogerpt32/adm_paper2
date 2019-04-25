@@ -1,0 +1,61 @@
+\documentclass[sigconf,authorversion]{acmart}
+\usepackage[utf8]{inputenc}
+\usepackage{booktabs}
+\usepackage{enumitem} %resume enumerate
+\usepackage{graphicx}
+\usepackage{caption}
+\usepackage{subcaption}
+
+% Remove reference format
+\settopmatter{printacmref=false}
+\setcopyright{none}
+\renewcommand\footnotetextcopyrightpermission[1]{}
+\pagestyle{plain}
+
+\title{Clustering Algorithms for Color Segmentation}
+\author{Roger Pujol}
+\affiliation{%
+  \institution{Universitat Politècnica de Catalunya (UPC)}
+  \city{Barcelona}
+  \country{Spain}}
+% \affiliation{%
+%   \institution{Barcelona Supercomputing Center (BSC)}
+%   \city{Barcelona}
+%   \country{Spain}}
+\email{roger.pujol.torramorell@est.fib.upc.edu}
+\date{\today}
+
+\begin{abstract}
+General Matrix Multiplications (GEMM) are a key component in the rising world of Deep Learning. Most of the computational complexity of Deep Neural Networks can be reduced to mutliple huge GEMMs. Since any small optimization in GEMM can affect positively in many applications, our objective in this project will be to find how the parameters affect the performance of this kind of operations. Also we will try to get a regressor model capable to predict the time that will be needed to compute the GEMM given the parameters used.\\
+The code of this project is Open Source and can be found in: \url{https://github.com/rogerpt32/adm_paper2}
+\end{abstract}
+
+\begin{document}
+
+\maketitle
+
+\section{Introduction}
+
+\section{Data}
+
+\section{Preprocess}
+
+\section{Analysis}
+
+\section{Regression Line Model}
+The first approach that we used to try to predict the execution time of the SGEMM given the parameters, is a simple regression line.
+\subsection{Implementation}
+To get the model, first we split the model in two blocks: one for training (in this case 90\% of the data set) and the other to test (in this case 10\% of the data set) the accuracy later. Then we use the training part to fit the regression line model. Finally we use that model to predict the execution times of the test examples and we compare the results with the real values.
+\subsection{Results}
+The results from the Regression Line are not very satisfying. The mean square error that this model has in the training data is 80322.28, and obviously the mean square error in the testing data is even worse with a value of 82841.39. This lack of accuracy using a linear regression, might probably mean that our data is not linear. If we check the variance using the $R^2$-score, where a 1 means that the data fits perfectly to the regression line with no variance and a 0 means the opposite, we get a 0.41 in both train and test data. This confirms that this regression might not be a good solution.\\
+But in order to benefit from this model, we can take a look to the coefficients that define the model. This coefficients multiply the correspondent input variables described in the Data Set section.
+
+\section{Decision Tree Regressor Model}
+\subsection{Implementation}
+
+\section{Conclusions}
+
+\bibliographystyle{unsrt}
+\bibliography{cites}
+
+\end{document}
