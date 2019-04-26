@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2019.2.11)  25 APR 2019 17:07
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2019.2.11)  26 APR 2019 17:15
 entering extended mode
  \write18 enabled.
  file:line:error style messages enabled.
@@ -1043,13 +1043,25 @@ Package: subcaption 2016/05/22 v1.1-161 Sub-captions (AR)
 )
 Class acmart Info: Suppressing bibformat on input line 10.
 \c@theorem=\count135
- Excluding comment 'screenonly' Include comment 'printonly' Include comment 'anonsuppress'
-No file report.aux.
+ Excluding comment 'screenonly' Include comment 'printonly' Include comment 'anonsuppress' (./report.aux
+
+LaTeX Warning: Label `subfig:baboon' multiply defined.
+
+
+LaTeX Warning: Label `sub@subfig:baboon' multiply defined.
+
+
+LaTeX Warning: Label `subfig:lena' multiply defined.
+
+
+LaTeX Warning: Label `sub@subfig:lena' multiply defined.
+
+)
 \openout1 = `report.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/nxlmi/m/it on input line 33.
 LaTeX Font Info:    Try loading font information for OML+nxlmi on input line 33.
-(/usr/share/texlive/texmf-dist/tex/latex/newtx/omlnxlmi.fd
+ (/usr/share/texlive/texmf-dist/tex/latex/newtx/omlnxlmi.fd
 File: omlnxlmi.fd 2013/11/19 Fontinst v1.933 font definitions for OML/nxlmi.
 )
 LaTeX Font Info:    ... okay on input line 33.
@@ -1148,6 +1160,7 @@ Package: gettitlestring 2016/05/16 v1.5 Cleanup title references (HO)
 LaTeX Info: Redefining \ref on input line 33.
 LaTeX Info: Redefining \pageref on input line 33.
 LaTeX Info: Redefining \nameref on input line 33.
+ (./report.out) (./report.out)
 \@outlinefile=\write5
 \openout5 = `report.out'.
 
@@ -1262,44 +1275,142 @@ Package hyperref Warning: Option `pdflang' has already been used,
 Package hyperref Warning: Option `pdfdisplaydoctitle' has already been used,
 (hyperref)                setting the option has no effect on input line 35.
 
+LaTeX Font Info:    Font shape `T1/LinuxLibertineT-TLF/m/it' will be
+(Font)              scaled to size 9.0pt on input line 39.
+<../imgs/baboon.png, id=61, 256.96pt x 256.96pt>
+File: ../imgs/baboon.png Graphic file (type png)
+<use ../imgs/baboon.png>
+Package pdftex.def Info: ../imgs/baboon.png  used on input line 45.
+(pdftex.def)             Requested size: 108.51563pt x 108.51451pt.
+LaTeX Font Info:    Font shape `T1/LinuxLibertineT-TLF/m/n' will be
+(Font)              scaled to size 8.0pt on input line 46.
+LaTeX Font Info:    Font shape `T1/LinuxLibertineT-TLF/b/n' will be
+(Font)              scaled to size 8.0pt on input line 46.
+<../imgs/lena.png, id=62, 220.825pt x 220.825pt>
+File: ../imgs/lena.png Graphic file (type png)
+<use ../imgs/lena.png>
+Package pdftex.def Info: ../imgs/lena.png  used on input line 51.
+(pdftex.def)             Requested size: 108.51563pt x 108.51518pt.
+<../imgs/peppers2.jpeg, id=63, 259.97125pt x 194.7275pt>
+File: ../imgs/peppers2.jpeg Graphic file (type jpg)
+<use ../imgs/peppers2.jpeg>
+Package pdftex.def Info: ../imgs/peppers2.jpeg  used on input line 57.
+(pdftex.def)             Requested size: 108.51563pt x 81.27986pt.
+<../imgs/peppersc.jpg, id=64, 513.92pt x 513.92pt>
+File: ../imgs/peppersc.jpg Graphic file (type jpg)
+<use ../imgs/peppersc.jpg>
+Package pdftex.def Info: ../imgs/peppersc.jpg  used on input line 63.
+(pdftex.def)             Requested size: 108.51563pt x 108.51451pt.
+[1.1{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}
+
+ <../imgs/baboon.png> <../imgs/lena.png> <../imgs/peppers2.jpeg> <../imgs/peppersc.jpg>]
+<../outputs/baboon_2_hsv_colored_kmeans.png, id=84, 256.96pt x 256.96pt>
+File: ../outputs/baboon_2_hsv_colored_kmeans.png Graphic file (type png)
+<use ../outputs/baboon_2_hsv_colored_kmeans.png>
+Package pdftex.def Info: ../outputs/baboon_2_hsv_colored_kmeans.png  used on input line 108.
+(pdftex.def)             Requested size: 126.57375pt x 126.57413pt.
+<../outputs/baboon_2_hsv_colored_gmm.png, id=86, 256.96pt x 256.96pt>
+File: ../outputs/baboon_2_hsv_colored_gmm.png Graphic file (type png)
+<use ../outputs/baboon_2_hsv_colored_gmm.png>
+Package pdftex.def Info: ../outputs/baboon_2_hsv_colored_gmm.png  used on input line 114.
+(pdftex.def)             Requested size: 126.57375pt x 126.57413pt.
+<../outputs/baboon_2_hsv_colored_birch.png, id=87, 256.96pt x 256.96pt>
+File: ../outputs/baboon_2_hsv_colored_birch.png Graphic file (type png)
+<use ../outputs/baboon_2_hsv_colored_birch.png>
+Package pdftex.def Info: ../outputs/baboon_2_hsv_colored_birch.png  used on input line 120.
+(pdftex.def)             Requested size: 126.57375pt x 126.57413pt.
+<../outputs/baboon_2_hsv_plot_kmeans.pdf, id=88, 393.37088pt x 287.35744pt>
+File: ../outputs/baboon_2_hsv_plot_kmeans.pdf Graphic file (type pdf)
+<use ../outputs/baboon_2_hsv_plot_kmeans.pdf>
+Package pdftex.def Info: ../outputs/baboon_2_hsv_plot_kmeans.pdf  used on input line 125.
+(pdftex.def)             Requested size: 126.57375pt x 92.4605pt.
+<../outputs/baboon_2_hsv_plot_gmm.pdf, id=89, 393.37088pt x 287.35744pt>
+File: ../outputs/baboon_2_hsv_plot_gmm.pdf Graphic file (type pdf)
+<use ../outputs/baboon_2_hsv_plot_gmm.pdf>
+Package pdftex.def Info: ../outputs/baboon_2_hsv_plot_gmm.pdf  used on input line 131.
+(pdftex.def)             Requested size: 126.57375pt x 92.4605pt.
+<../outputs/baboon_2_hsv_plot_birch.pdf, id=90, 393.37088pt x 287.35744pt>
+File: ../outputs/baboon_2_hsv_plot_birch.pdf Graphic file (type pdf)
+<use ../outputs/baboon_2_hsv_plot_birch.pdf>
+Package pdftex.def Info: ../outputs/baboon_2_hsv_plot_birch.pdf  used on input line 137.
+(pdftex.def)             Requested size: 126.57375pt x 92.4605pt.
+<../outputs/baboon_2_rgb_colored_kmeans.png, id=91, 256.96pt x 256.96pt>
+File: ../outputs/baboon_2_rgb_colored_kmeans.png Graphic file (type png)
+<use ../outputs/baboon_2_rgb_colored_kmeans.png>
+Package pdftex.def Info: ../outputs/baboon_2_rgb_colored_kmeans.png  used on input line 147.
+(pdftex.def)             Requested size: 126.57375pt x 126.57413pt.
+<../outputs/baboon_2_rgb_colored_gmm.png, id=92, 256.96pt x 256.96pt>
+File: ../outputs/baboon_2_rgb_colored_gmm.png Graphic file (type png)
+<use ../outputs/baboon_2_rgb_colored_gmm.png>
+Package pdftex.def Info: ../outputs/baboon_2_rgb_colored_gmm.png  used on input line 153.
+(pdftex.def)             Requested size: 126.57375pt x 126.57413pt.
+<../outputs/baboon_2_rgb_colored_birch.png, id=93, 256.96pt x 256.96pt>
+File: ../outputs/baboon_2_rgb_colored_birch.png Graphic file (type png)
+<use ../outputs/baboon_2_rgb_colored_birch.png>
+Package pdftex.def Info: ../outputs/baboon_2_rgb_colored_birch.png  used on input line 159.
+(pdftex.def)             Requested size: 126.57375pt x 126.57413pt.
+<../outputs/baboon_2_rgb_plot_kmeans.pdf, id=94, 358.4592pt x 267.10992pt>
+File: ../outputs/baboon_2_rgb_plot_kmeans.pdf Graphic file (type pdf)
+<use ../outputs/baboon_2_rgb_plot_kmeans.pdf>
+Package pdftex.def Info: ../outputs/baboon_2_rgb_plot_kmeans.pdf  used on input line 164.
+(pdftex.def)             Requested size: 126.57375pt x 94.31725pt.
+<../outputs/baboon_2_rgb_plot_gmm.pdf, id=95, 358.4592pt x 267.10992pt>
+File: ../outputs/baboon_2_rgb_plot_gmm.pdf Graphic file (type pdf)
+<use ../outputs/baboon_2_rgb_plot_gmm.pdf>
+Package pdftex.def Info: ../outputs/baboon_2_rgb_plot_gmm.pdf  used on input line 170.
+(pdftex.def)             Requested size: 126.57375pt x 94.31725pt.
+<../outputs/baboon_2_rgb_plot_birch.pdf, id=96, 358.4592pt x 267.10992pt>
+File: ../outputs/baboon_2_rgb_plot_birch.pdf Graphic file (type pdf)
+<use ../outputs/baboon_2_rgb_plot_birch.pdf>
+Package pdftex.def Info: ../outputs/baboon_2_rgb_plot_birch.pdf  used on input line 176.
+(pdftex.def)             Requested size: 126.57375pt x 94.31725pt.
+
 No file report.bbl.
+LaTeX Font Info:    Font shape `T1/LinuxLibertineT-TLF/m/n' will be
+(Font)              scaled to size 6.0pt on input line 190.
+[2.2
 
-Underfull \vbox (badness 7291) has occurred while \output is active []
+] [3.3 <../outputs/baboon_2_hsv_colored_kmeans.png> <../outputs/baboon_2_hsv_colored_gmm.png> <../outputs/baboon_2_hsv_colored_birch.png> <../outputs/baboon_2_hsv_plot_kmeans.pdf> <../outputs/baboon_2_hsv_plot_gmm.pdf
 
- [1.1{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}
+pdfTeX warning: pdflatex (file ../outputs/baboon_2_hsv_plot_gmm.pdf): PDF inclusion: multiple pdfs with page group included in a single page
+> <../outputs/baboon_2_hsv_plot_birch.pdf
 
-]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 61.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 61.
+pdfTeX warning: pdflatex (file ../outputs/baboon_2_hsv_plot_birch.pdf): PDF inclusion: multiple pdfs with page group included in a single page
+> <../outputs/baboon_2_rgb_colored_kmeans.png> <../outputs/baboon_2_rgb_colored_gmm.png> <../outputs/baboon_2_rgb_colored_birch.png> <../outputs/baboon_2_rgb_plot_kmeans.pdf
+
+pdfTeX warning: pdflatex (file ../outputs/baboon_2_rgb_plot_kmeans.pdf): PDF inclusion: multiple pdfs with page group included in a single page
+> <../outputs/baboon_2_rgb_plot_gmm.pdf
+
+pdfTeX warning: pdflatex (file ../outputs/baboon_2_rgb_plot_gmm.pdf): PDF inclusion: multiple pdfs with page group included in a single page
+> <../outputs/baboon_2_rgb_plot_birch.pdf
+
+pdfTeX warning: pdflatex (file ../outputs/baboon_2_rgb_plot_birch.pdf): PDF inclusion: multiple pdfs with page group included in a single page
+>]
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 190.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 190.
  (./report.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 61.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 61.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 190.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 190.
+Package rerunfilecheck Info: File `report.out' has not changed.
+(rerunfilecheck)             Checksum: 28D49BF45441AE59BE3F1938634A41D8;1634.
 
 
-Package rerunfilecheck Warning: File `report.out' has changed.
-(rerunfilecheck)                Rerun to get outlines right
-(rerunfilecheck)                or use package `bookmark'.
-
-Package rerunfilecheck Info: Checksums for `report.out':
-(rerunfilecheck)             Before: <no file>
-(rerunfilecheck)             After:  A200D3B43CAFF941E10D5C7B26F6E126;1383.
-
-LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
+LaTeX Warning: There were multiply-defined labels.
 
  ) 
 Here is how much of TeX's memory you used:
- 18252 strings out of 492982
- 270323 string characters out of 6134896
- 390918 words of memory out of 5000000
- 21268 multiletter control sequences out of 15000+600000
- 74481 words of font info for 107 fonts, out of 8000000 for 9000
+ 18497 strings out of 492982
+ 276619 string characters out of 6134896
+ 395893 words of memory out of 5000000
+ 21404 multiletter control sequences out of 15000+600000
+ 105522 words of font info for 162 fonts, out of 8000000 for 9000
  1302 hyphenation exceptions out of 8191
- 60i,11n,94p,856b,490s stack positions out of 5000i,500n,10000p,200000b,80000s
-{/usr/share/texlive/texmf-dist/fonts/enc/dvips/libertine/lbtn_oexx6f.enc}{/usr/share/texlive/texmf-dist/fonts/enc/dvips/base/8r.enc}{/usr/share/texlive/texmf-dist/fonts/enc/dvips/libertine/lbtn_nh77jq.enc}{/usr/share/texlive/texmf-dist/fonts/enc/dvips/libertine/lbtn_76gpa5.enc}{/usr/share/texlive/texmf-dist/fonts/enc/dvips/libertine/lbtn_25tcsq.enc}</usr/share/texlive/texmf-dist/fonts/type1/public/libertine/LinBiolinumTB.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/libertine/LinLibertineT.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/libertine/LinLibertineTB.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/newtx/zxlri.pfb>
-Output written on report.pdf (1 page, 237124 bytes).
+ 60i,11n,94p,856b,659s stack positions out of 5000i,500n,10000p,200000b,80000s
+{/usr/share/texlive/texmf-dist/fonts/enc/dvips/base/8r.enc}{/usr/share/texlive/texmf-dist/fonts/enc/dvips/newtx/libertinealt.enc}{/usr/share/texlive/texmf-dist/fonts/enc/dvips/libertine/lbtn_oexx6f.enc}{/usr/share/texlive/texmf-dist/fonts/enc/dvips/libertine/lbtn_7grukw.enc}{/usr/share/texlive/texmf-dist/fonts/enc/dvips/libertine/lbtn_nh77jq.enc}{/usr/share/texlive/texmf-dist/fonts/enc/dvips/libertine/lbtn_76gpa5.enc}{/usr/share/texlive/texmf-dist/fonts/enc/dvips/libertine/lbtn_25tcsq.enc}</usr/share/texlive/texmf-dist/fonts/type1/public/libertine/LinBiolinumTB.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/libertine/LinLibertineT.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/libertine/LinLibertineTB.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/libertine/LinLibertineTI.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/txfonts/rtxr.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/newtx/txsys.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/newtx/zxlri.pfb>
+Output written on report.pdf (3 pages, 21150099 bytes).
 PDF statistics:
- 59 PDF objects out of 1000 (max. 8388607)
- 43 compressed objects within 1 object stream
- 13 named destinations out of 1000 (max. 500000)
- 16397 words of extra memory for PDF output out of 17280 (max. 10000000)
+ 231 PDF objects out of 1000 (max. 8388607)
+ 144 compressed objects within 2 object streams
+ 20 named destinations out of 1000 (max. 500000)
+ 25797 words of extra memory for PDF output out of 29859 (max. 10000000)
 
