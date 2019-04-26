@@ -39,7 +39,7 @@ In this project we are going to apply three different clustering methods (k-mean
 \emph{Note: In this report, I only show a very small portion of the results because of some space limitation and to simplify the comprehension. I strongly recommend to download the source code and then check all the outputs and even run the ``getall.sh'' script to get the complete outputs.}
 
 \section{Data Description}
-The data we used to test test the algorithms are 4 pictures that are usually used as Test Images (see Figure \ref{fig:original}). 
+The data we used to test test the algorithms are 4 pictures that are usually used as Test Images (see Figure \ref{fig:original}).
 \begin{figure}[hbtp]
   \begin{subfigure}[b]{0.45\columnwidth}
       \includegraphics[width=\columnwidth]{../imgs/baboon.png}
@@ -56,13 +56,13 @@ The data we used to test test the algorithms are 4 pictures that are usually use
   \begin{subfigure}[b]{0.45\columnwidth}
     \includegraphics[width=\columnwidth]{../imgs/peppers2.jpeg}
     \caption{``peppers2.jpeg''}
-    \label{subfig:baboon}
+    \label{subfig:peppers2}
   \end{subfigure}
   \hspace{0.01\textwidth}
   \begin{subfigure}[b]{0.45\columnwidth}
       \includegraphics[width=\columnwidth]{../imgs/peppersc.jpg}
       \caption{``peppersc.jpg''}
-      \label{subfig:lena}
+      \label{subfig:peppersc}
   \end{subfigure}
   \caption{Images used as Data in this project}
   \label{fig:original}
@@ -98,11 +98,60 @@ EM (Expectation Maximization) with Gaussian Mixture Model, tries to find $k$ gro
 BIRCH algorithm, first builds a CF Tree with the data. Then it applies K-Means or another clustering to the Tree to get the final clusters.
 
 \section{Postprocess}
-In order to see the results how the results affects to the 
+In order to see how the results affects to the original image, we have to postprocess the output.\\
+For the RGB framework is simple, we only have to get the mean (center) color of the cluster and create a new image where each pixel has the value of the center of the cluster that has assigned to it.\\
+For the HSV we have to do the same but firs we should pass the centers from cartesian coordinates to the regular HS(V) color-space and then use that to convert it to RGB. Since we deleted the value (V) of the color-space to ignore light differences, the result also lacks of this feature, then in order to get a RGB color we will have to fix a brightness value. The value chosen is almost full brightness, since this will be usefull to show more clearly the colors.
 
 \section{Results}
-Now I will provide some of the tests that had major differences in the results with each algorithm.
+Now I will provide some of the tests that had major differences in the results with each algorithm and color-spaces.
+\subsection{Comparing Algorithms}
 Clustering the colors of the image Baboon with only 2 clusters with the three algorithms will output three very different outputs (see Figures \ref{fig:baboon_2_hsv} and \ref{fig:baboon_2_rgb}). In these figures we can appreciate how EM successfully divide 2 clear groups which are an intense Red and a Green. K-Means and BIRCH have very similar results in the HSV color-space but different in RGB, here the group of points detected by EM falls almost entirely to different clusters. In this particular case, EM seems to get the two most human intuitive clusters and the other methods are only dividing the data almost through the middle.
+
+\subsection{Comparing Color-Spaces}
+To compare the color-spaces we will focus on Figure \ref{fig:peppers_5}. Ignoring the fact that the colors in the of HSV are a lot brighter, because we added that bright afterwards, the color clusters are very different. Since we deleted the bright feature in the HSV, it seems that the colors almost fits perfectly for each object ignoring completely the shadows and other light effects, on the other hand RGB captures all the shadows as different colors and this mixes the objects from the original picture. Probably with this we could say that using our HS(V) color-space, we could segmentate objects based on their color.
+\begin{figure}[hbtp]
+  \begin{subfigure}[b]{0.45\columnwidth}
+      \includegraphics[width=\columnwidth]{../outputs/peppers2_5_hsv_colored_kmeans.png}
+      \caption{Colored HSV image with K-Means}
+      \label{subfig:peppers_hsv_kmeans}
+  \end{subfigure}
+  \hspace{0.05\columnwidth}
+  \begin{subfigure}[b]{0.45\columnwidth}
+      \includegraphics[width=\columnwidth]{../outputs/peppers2_5_rgb_colored_kmeans.png}
+      \caption{Colored RGB image with K-Means}
+      \label{subfig:peppers_rgb_kmeans}
+  \end{subfigure}
+
+  \begin{subfigure}[b]{0.45\columnwidth}
+      \includegraphics[width=\columnwidth]{../outputs/peppers2_5_hsv_colored_gmm.png}
+      \caption{Colored HSV image with EM}
+      \label{subfig:peppers_hsv_gmm}
+  \end{subfigure}
+  \hspace{0.05\columnwidth}
+  \begin{subfigure}[b]{0.45\columnwidth}
+      \includegraphics[width=\columnwidth]{../outputs/peppers2_5_rgb_colored_gmm.png}
+      \caption{Colored RGB image with EM}
+      \label{subfig:peppers_rgb_gmm}
+  \end{subfigure}
+
+  \begin{subfigure}[b]{0.45\columnwidth}
+      \includegraphics[width=\columnwidth]{../outputs/peppers2_5_hsv_colored_birch.png}
+      \caption{Colored HSV image with BIRCH}
+      \label{subfig:peppers_hsv_birch}
+  \end{subfigure}
+  \hspace{0.05\columnwidth}
+  \begin{subfigure}[b]{0.45\columnwidth}
+      \includegraphics[width=\columnwidth]{../outputs/peppers2_5_rgb_colored_birch.png}
+      \caption{Colored RGB image with BIRCH}
+      \label{subfig:peppers_rgb_birch}
+  \end{subfigure}
+  \caption{Peppers2 image colored  using every algorithm with 2 clusters in a RGB and HSV color-space}
+  \label{fig:peppers_5}
+\end{figure}
+
+\section{Conclusions}
+At the end of the experiments, it looks like all the algorithms achieve to get coherent groups in most of the situations and the correctness of one method over another depend mostly in the data used. Also we have found that if we want to segmentate objects in an image knowing their color, HSV will probably be a better color-space to do it, since we can toggle off the brightness of the image and focus only on the color.
+
 \begin{figure*}[hbtp]
   \begin{subfigure}[b]{0.25\textwidth}
       \includegraphics[width=\textwidth]{../outputs/baboon_2_hsv_colored_kmeans.png}
@@ -181,10 +230,7 @@ Clustering the colors of the image Baboon with only 2 clusters with the three al
   \label{fig:baboon_2_rgb}
 \end{figure*}
 
-\section{Conclusions}
-At the end of the experiments, it looks like all the algorithms achieve to get coherent groups in most of the situations and the correctness of one method over another depend mostly in the data used. 
-
-\bibliographystyle{unsrt}
-\bibliography{cites}
+% \bibliographystyle{unsrt}
+% \bibliography{cites}
 
 \end{document}
