@@ -167,7 +167,6 @@ def main(argv):
     show=False
     save=True
     algorithms=["kmeans","gmm","birch"] # Optional: hier_agg
-    algorithms=["birch"]
 
     # Load data
 
@@ -181,7 +180,7 @@ def main(argv):
         print("Algorithm: "+algor)
         print("-------------------------------------------------------------")
         print("HSV:\n")
-        # get_hsv(name,algor,df,clusters,max_x,max_y,show,save)
+        get_hsv(name,algor,df,clusters,max_x,max_y,show,save)
         print("-------------------------------------------------------------")
         print("RGB:\n")
         get_rgb(name,algor,df,clusters,max_x,max_y,show,save)
